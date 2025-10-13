@@ -11,9 +11,7 @@ const courses = {
     "CSC380": { title: "Principles of Data Science", credits: 3 }
 };
 
-let cart = {
-    
-};
+let cart = new Set();
 
 /* function to render the available courses to the html */
 function renderCourses() {
