@@ -18,52 +18,19 @@
         <main> 
             <section class="course-list">
                 <h2> Available Courses </h2>
-                <div class="courses">
-                    <div class="course">
-                        <h3> Intro to Computer Science </h3>
-                        <p> Code: CSC101 </p>
-                        <p> Credits: 3</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
-                    <div class="course">
-                        <h3> Intro to Programming I </h3>
-                        <p> Code: CSC110 </p>
-                        <p> Credits: 4</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
-                    <div class="course">
-                        <h3> Intro to Programming II </h3>
-                        <p> Code: CSC120 </p>
-                        <p> Credits: 4</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
-                    <div class="course">
-                        <h3> Discrete Math I </h3>
-                        <p> Code: CSC144 </p>
-                        <p> Credits: 3</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
-                    <div class="course">
-                        <h3> Software Development </h3>
-                        <p> Code: CSC210 </p>
-                        <p> Credits: 3</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
-                    <div class="course">
-                        <h3> Discrete Math II </h3>
-                        <p> Code: CSC244 </p>
-                        <p> Credits: 3</p>
-                        <button onclick="addCourse(this)"> Add to Cart </button>
-                    </div>
+                <div id= "available-courses" class="courses">
+                <!-- Courses are added here from the back end -->    
                 </div>
             </section>
 
             <aside class="cart">
                 <h2> Your Cart </h2>
-                <div class="cart-items">
-                    <p> No courses added yet. </p>
+                <div class="cart-items" id="cart">
+                    <!-- Cart is loaded from the back end -->
                 </div>
                 <button class="checkout-bin"> Register </button>
             </aside>
     </body>
+
+    <script src="courseSim.js"></script>
 </html>
