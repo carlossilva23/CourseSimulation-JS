@@ -95,6 +95,9 @@ main {
 
 .cart-items {
   margin-bottom: 20px;
+  overflow-y: auto;
+  max-height: 500px;
+
 }
 
 .checkout-btn {
