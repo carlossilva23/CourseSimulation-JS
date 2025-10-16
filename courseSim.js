@@ -73,6 +73,18 @@ function removeCourse(code) {
     renderCart();
 }
 
+/* Function that ensure the Enroll button works. */
+function enroll(cart) {
+    const credits = 0;
+    for (c in cart) {
+        c.credits += credits;
+    }
+    if (credits >= 10 && credits <= 15) {
+        alert("Congratulations! You have enrolled!");
+    } else {
+        alert("Error: Credits are not within 10 and 15.");
+    }
+}
 
 renderCourses();
 renderCart();
