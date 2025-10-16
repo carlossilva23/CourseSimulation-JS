@@ -64,5 +64,15 @@ function renderCart() {
     }
 }
 
+/* Function that removes courses from cart. */
+function removeCourse(code) {
+    if (cart.has(code)) {
+        cart.delete(code);
+        alert(`${code} was removed from your cart.`);
+    }
+    renderCart();
+}
+
+
 renderCourses();
 renderCart();
