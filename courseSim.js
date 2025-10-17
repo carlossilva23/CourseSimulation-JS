@@ -1,4 +1,3 @@
-/* dictionary of courses */
 const courses = {
     "CSC101": { title: "Intro to Computer Science", credits: 3 },
     "CSC110": { title: "Intro to Programming I", credits: 4 },
@@ -11,91 +10,80 @@ const courses = {
     "CSC380": { title: "Principles of Data Science", credits: 3 }
 };
 
-let cart = new Set();
+// cart is a Set of course codes (e.g., "CSC110", "CSC210")
+const cart = new Set();
 
-/* function to render the available courses to the html */
 function renderCourses() {
-    let available_courses_div = document.getElementById("available-courses");
+    const available_courses_div = document.getElementById("available-courses");
+    available_courses_div.innerHTML = ""; // clear
 
-    for (c in courses) {
-
-        if (cart.has(c)) continue;
-
-        let current_code = c;
-        let current_course = courses[c];
-        let current_title = current_course.title;
-        let current_credits = current_course.credits;
-
-        let new_div_html =
-            "<div class=\"course\">"
-            + "<h3>" + current_title + "</h3>"
-            + "<p>Code: " + current_code + "</p>"
-            + "<p>Credits: " + current_credits + "</p>"
-            + "<button onclick=\"addCourse(this)\" type=\"button\">Add Course</button>"
-            + "</div>";
-
+    for (const code in courses) {
+        const course = courses[code];
+        const new_div_html = `
+        <div class="course">
+          <h3>${course.title}</h3>
+          <p>Code: ${code}</p>
+          <p>Credits: ${course.credits}</p>
+          <button type="button" onclick="addCourse('${code}')">Add Course</button>
+        </div>
+      `;
         available_courses_div.innerHTML += new_div_html;
     }
 }
 
 function renderCart() {
-    let cart_courses_div = document.getElementById("cart");
+    const cart_courses_div = document.getElementById("cart");
+    cart_courses_div.innerHTML = "";
 
-     cart_courses_div.innerHTML = ""; // CHANGED: clear before re-render
-
-    /* the cart is empty */
-    if (cart.size == 0) {
+    if (cart.size === 0) {
         cart_courses_div.innerHTML = "<p>No courses added yet.</p>";
-        return; // ADDED: stop here if empty
+        return;
     }
 
-    
-    for (c in cart) {
-        let current_code = c;
-        let current_course = courses[c];
-        let current_title = current_course.title;
-        let current_credits = current_course.credits;
-
-        let new_div_html =
-            "<div class=\"course\">"
-            + "<h3>" + current_title + "</h3>"
-            + "<p>Code: " + current_code + "</p>"
-            + "<p>Credits: " + current_credits + "</p>"
-            + "<button onclick=\"removeCourse(this)\" type=\"button\">Remove Course</button>"
-            + "</div>";
-
+    // iterate directly over the Set of codes
+    for (const code of cart) {
+        const course = courses[code];
+        const new_div_html = `
+        <div class="course">
+          <h3>${course.title}</h3>
+          <p>Code: ${code}</p>
+          <p>Credits: ${course.credits}</p>
+          <button type="button" onclick="removeCourse('${code}')">Remove Course</button>
+        </div>
+      `;
         cart_courses_div.innerHTML += new_div_html;
     }
 }
 
-// Function that adds classes to cart.
 function addCourse(courseCode) {
+    if (cart.has(courseCode)) return; // already in cart
     cart.add(courseCode);
     renderCourses();
     renderCart();
 }
 
-/* Function that removes courses from cart. */
 function removeCourse(code) {
     if (cart.has(code)) {
         cart.delete(code);
         alert(`${code} was removed from your cart.`);
+        renderCourses();
+        renderCart();
     }
-    renderCart();
 }
 
-/* Function that ensure the Enroll button works. */
-function enroll(cart) {
-    const credits = 0;
-    for (c in cart) {
-        c.credits += credits;
+function enroll() {
+    let totalCredits = 0;
+    for (const code of cart) {          
+        totalCredits += courses[code].credits;
     }
-    if (credits >= 10 && credits <= 15) {
-        alert("Congratulations! You have enrolled!");
+
+    if (totalCredits >= 10 && totalCredits <= 15) {
+        alert(`Congratulations! You have enrolled with ${totalCredits} credits!`);
     } else {
-        alert("Error: Credits are not within 10 and 15.");
+        alert(`Incorrect number of credits to enroll (you have ${totalCredits}).`);
     }
 }
+
 
 renderCourses();
 renderCart();
