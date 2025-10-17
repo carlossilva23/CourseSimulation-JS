@@ -1,5 +1,5 @@
 /* dictionary of courses */
-const courses = { //TO DO: add courses to this dictionary variable. Courses have titles, credits, and codes. };
+const courses = { /*TO DO: add courses to this dictionary variable. Courses have titles, credits, and codes.*/ };
 
 /* set (which ensures no duplicates) of courses that holds what is in the user's cart */
 let cart = new Set();
