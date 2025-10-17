@@ -1,7 +1,7 @@
 /* dictionary of courses */
 const courses = { /*TO DO: add courses to this dictionary variable. Courses have titles, credits, and codes.*/ };
 
-/* set (which ensures no duplicates) of courses that holds what is in the user's cart */
+/* set (which ensures no duplicates) of course codes that are in the user's cart */
 let cart = new Set();
 
 /* function to render the available courses to the html */
@@ -30,6 +30,7 @@ function addCourse(courseCode) {
 /* Function that removes courses from cart. */
 function removeCourse(code) {
     //TO DO: add code to remove the course from the cart
+    renderCourses();
     renderCart();
 }
 
