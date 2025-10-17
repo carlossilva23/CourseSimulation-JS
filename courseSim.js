@@ -1,100 +1,42 @@
 /* dictionary of courses */
-const courses = {
-    "CSC101": { title: "Intro to Computer Science", credits: 3 },
-    "CSC110": { title: "Intro to Programming I", credits: 4 },
-    "CSC120": { title: "Intro to Programming II", credits: 4 },
-    "CSC144": { title: "Discrete Math I", credits: 3 },
-    "CSC210": { title: "Software Development", credits: 3 },
-    "CSC244": { title: "Discrete Math II", credits: 3 },
-    "CSC252": { title: "Computer Organization", credits: 3 },
-    "CSC345": { title: "Analysis of Discrete Structures", credits: 3 },
-    "CSC380": { title: "Principles of Data Science", credits: 3 }
-};
+const courses = { //TO DO: add courses to this dictionary variable. Courses have titles, credits, and codes. };
 
+/* set (which ensures no duplicates) of courses that holds what is in the user's cart */
 let cart = new Set();
 
 /* function to render the available courses to the html */
 function renderCourses() {
-    let available_courses_div = document.getElementById("available-courses");
-
-    for (c in courses) {
-
-        if (cart.has(c)) continue;
-
-        let current_code = c;
-        let current_course = courses[c];
-        let current_title = current_course.title;
-        let current_credits = current_course.credits;
-
-        let new_div_html =
-            "<div class=\"course\">"
-            + "<h3>" + current_title + "</h3>"
-            + "<p>Code: " + current_code + "</p>"
-            + "<p>Credits: " + current_credits + "</p>"
-            + "<button onclick=\"addCourse(this)\" type=\"button\">Add Course</button>"
-            + "</div>";
-
-        available_courses_div.innerHTML += new_div_html;
-    }
+    //TO DO: select the html element that will display the available courses (hint: the ID of this html element is 'available-courses')
+    //TO DO: loop through the dictionary (courses) and extract the courses code, title, and credits. Add the course information into an html div with class
+    //'course'. The div should display the title (h3 tag), code (p tag), and number of credits (p tag). Also include a button to call the 'addCourse'
+    //function when clicked.
 }
 
+/* function to render the cart courses to the html */
 function renderCart() {
-    let cart_courses_div = document.getElementById("cart");
-
-     cart_courses_div.innerHTML = ""; // CHANGED: clear before re-render
-
-    /* the cart is empty */
-    if (cart.size == 0) {
-        cart_courses_div.innerHTML = "<p>No courses added yet.</p>";
-        return; // ADDED: stop here if empty
-    }
-
-    
-    for (c in cart) {
-        let current_code = c;
-        let current_course = courses[c];
-        let current_title = current_course.title;
-        let current_credits = current_course.credits;
-
-        let new_div_html =
-            "<div class=\"course\">"
-            + "<h3>" + current_title + "</h3>"
-            + "<p>Code: " + current_code + "</p>"
-            + "<p>Credits: " + current_credits + "</p>"
-            + "<button onclick=\"removeCourse(this)\" type=\"button\">Remove Course</button>"
-            + "</div>";
-
-        cart_courses_div.innerHTML += new_div_html;
-    }
+    //TO DO: select the html element that will display the cart courses (hint: the ID of this html element is 'cart')
+    //TO DO: loop through the cart and extract the courses code, title, and credits. Add the course information into an html div with class
+    //'course'. The div should display the title (h3 tag), code (p tag), and number of credits (p tag). Also include a button to call the 'removeCourse'
+    //function when clicked.
 }
 
-// Function that adds classes to cart.
+/* Function that adds classes to cart. */
 function addCourse(courseCode) {
-    cart.add(courseCode);
+    //TO DO: add code to add the course to the cart
     renderCourses();
     renderCart();
 }
 
 /* Function that removes courses from cart. */
 function removeCourse(code) {
-    if (cart.has(code)) {
-        cart.delete(code);
-        alert(`${code} was removed from your cart.`);
-    }
+    //TO DO: add code to remove the course from the cart
     renderCart();
 }
 
-/* Function that ensure the Enroll button works. */
+/* Function to enroll the user (cart has between 10 and 15 courses). */
 function enroll(cart) {
-    const credits = 0;
-    for (c in cart) {
-        c.credits += credits;
-    }
-    if (credits >= 10 && credits <= 15) {
-        alert("Congratulations! You have enrolled!");
-    } else {
-        alert("Error: Credits are not within 10 and 15.");
-    }
+    //TO DO: check to see if the user has 10-15 credits in their cart (hint: use a loop!)
+    //TO DO: alert the user about their status (do they or do they not have enought credits)
 }
 
 renderCourses();
